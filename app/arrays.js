@@ -126,24 +126,11 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the number item inserted at position index.
    */
   insert: function insert(arr, item, index) {
-    const result = [];
-    let i = 0;
-    const temp = arr.slice(index);
-    while (i < arr.length + 1) {
-      if (i === index) {
-        result.push(item);
-        break;
-      } else {
-        result.push(arr[i]);
-      }
-      i += 1;
-    }
-    i = 0;
-    while (i < temp.length) {
-      result.push(temp[i]);
-      i += 1;
-    }
-    return result;
+    const arr1 = arr.slice(index);
+    const arr2 = arr.splice(0, index);
+    arr2.push(item);
+    const data = arr2.concat(arr1);
+    return data;
   },
 
   /**
@@ -209,13 +196,11 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers which represent the indices of target in arr.
    */
   findAllOccurrences: function findAllOccurrences(arr, target) {
-    let i = 0;
     const result = [];
-    while (i < arr.length) {
+    for (let i = 0; i < arr.length; i += 1) {
       if (arr[i] === target) {
         result.push(i);
       }
-      i += 1;
     }
     return result;
   },
